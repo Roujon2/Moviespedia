@@ -60,20 +60,19 @@ input[type=number]::-webkit-outer-spin-button {
 
 .movie_img{
     margin-top: 2rem;
-    width: 100%;
+    max-width: 55%;
     background: linear-gradient(45deg, transparent, #5bc4e873, transparent);
     padding: 1rem;
     border-radius: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
 }
 
 .movie_img img{
     display: block;
     border-radius: 2.3rem;
     overflow: hidden;
-    max-width: 55%;
-    height: auto;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 

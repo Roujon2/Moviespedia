@@ -65,7 +65,7 @@ h1{
 
 /* Almost all components are going to be wrapped in a Section tag*/
 section{
-  margin-top: 1rem;
+  margin-top: 0;
 }
 section > h2, section > h5{
   text-align: center;
