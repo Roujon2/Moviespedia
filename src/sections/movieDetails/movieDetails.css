@@ -1,0 +1,92 @@
+.movie_info_container{
+    margin-top: 2rem;
+}
+.movie_info_container h2{
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.movie_info{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 1rem;
+}
+
+.movie_card_container{
+    margin-top: 2rem;
+    max-width: 50%;
+    background: linear-gradient(45deg, transparent, #5bc4e873, transparent);
+    padding: 1rem;
+    border-radius: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+}
+
+
+/* CSS for the movie card */
+.movie_card{
+    position: relative;
+    transform: rotateY(var(--rotate-y, 0));
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: var(--transition);
+}
+.movie_card img{
+    backface-visibility: hidden;
+    position: relative;
+    display: block;
+    border-radius: 2.3rem;
+    overflow: hidden;
+    transition: var(--transition);
+    cursor: pointer;
+
+}
+/* Scale when the mouse hovers over */
+.movie_card img:hover{
+    opacity: 0.8;
+}
+
+.movie_card.flipped{
+    --rotate-y: 180deg;
+}
+
+/* Styles for the cast information hidden behind the poster */
+.cast_info {
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-light); /* Customize the background color for the cast info */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+
+    cursor: pointer;
+    transition: var(--transition);
+
+    border-radius: 2.3rem;
+}
+.cast_info:hover{
+    opacity: 0.8;
+}
+
+.cast_info ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.synopsis{
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #0d0110b5;
+}

@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 0.5rem;
 }
 
 /* Just making the font bold */
@@ -56,23 +56,6 @@ input[type=number]::-webkit-outer-spin-button {
 /* For the placeholder in the input text */
 ::placeholder{
     color: var(--color-primary);
-}
-
-.movie_img{
-    margin-top: 2rem;
-    max-width: 55%;
-    background: linear-gradient(45deg, transparent, #5bc4e873, transparent);
-    padding: 1rem;
-    border-radius: 2rem;
-    margin-left: auto;
-    margin-right: auto;
-    height: auto;
-}
-
-.movie_img img{
-    display: block;
-    border-radius: 2.3rem;
-    overflow: hidden;
 }
 
 

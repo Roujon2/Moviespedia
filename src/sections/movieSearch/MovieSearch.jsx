@@ -1,10 +1,10 @@
 import React from 'react'
 import './movieSearch.css'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { axiosRequest } from '../../api.js';
-import loading from '../../assets/loading_spinner.gif';
 
-import nebula from '../../assets/Helix Nebula.jpg';
+// Importing the movie details component
+import MovieDetails from '../movieDetails/MovieDetails.jsx';
 
 
 var api_key = process.env.REACT_APP_TMDB_API_KEY;
@@ -13,7 +13,6 @@ var api_key = process.env.REACT_APP_TMDB_API_KEY;
 const MovieSearch = () => {
     // Tracking the input of the user
     const [movieQuery, setMovieQuery] = useState('');
-    const [posterPath, setPosterPath] = useState(nebula);
 
 
     const [data, setData] = useState(null);
@@ -24,9 +23,6 @@ const MovieSearch = () => {
 
     // When the submit button is clicked
     const getData = async (event) => {
-        // Set the loading screen
-        setPosterPath(loading);
-
         // Prevents the page from reloading when the form is submitted
         event.preventDefault();
 
@@ -35,17 +31,13 @@ const MovieSearch = () => {
 
         axiosRequest.get(`/search/movie?query=${movieQuery}&include_adult=false&language=en-US&api_key=${api_key}`)
         .then((response) => {
-            setData(response.data);
-            console.log(response);
-
-            // Check if the poster_path is available in the response
-            const posterPath = response.data.results[0].poster_path || '';
-            setPosterPath(posterPath ? "https://image.tmdb.org/t/p/w500" + posterPath : '');
+            // Set the data to the first result
+            const firstMovie = response.data.results[0];
+            setData(firstMovie);
         })
         .catch((err) => {
             console.log(err)
         })
-
     }
 
     return (
@@ -55,14 +47,14 @@ const MovieSearch = () => {
                 <h3>Search movie Title</h3>
                 <div className='fields_container'>
                     <form action="" className='fields' onSubmit={getData}>
-                        <input type="text" onChange={handleInputChange} name="movie_title" placeholder="Enter movie title" value={movieQuery} required/>
+                        <input type="text" onChange={handleInputChange} name="movie_title" placeholder="Enter movie title" autoComplete="off" value={movieQuery} required/>
                         <button type='submit' className='btn btn-primary'>Search</button>
                     </form>
+                </div>
 
-                    <div className='movie_img'>
-                        <img src={posterPath} alt="" />
-
-                    </div>
+                <div className='movie_details_container'>
+                    {/* Render MovieDetails if data is loaded */}
+                    {data && <MovieDetails movieData={data}/>}
                 </div>
             </div>
         </section>
