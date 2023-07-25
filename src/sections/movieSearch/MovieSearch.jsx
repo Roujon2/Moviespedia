@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import './movieSearch.css'
 import { useState } from 'react'
 import { axiosRequest } from '../../api.js';
@@ -14,6 +14,9 @@ const MovieSearch = () => {
     // Tracking the input of the user
     const [movieQuery, setMovieQuery] = useState('');
 
+    // Reference of the movie search input text field
+    const movieQueryInputRef = useRef(null);
+
 
     const [data, setData] = useState(null);
 
@@ -28,6 +31,9 @@ const MovieSearch = () => {
 
         // Reset the text input field
         setMovieQuery('');
+
+        // Removing the focus from the input field
+        movieQueryInputRef.current.blur();
 
         axiosRequest.get(`/search/movie?query=${movieQuery}&include_adult=false&language=en-US&api_key=${api_key}`)
         .then((response) => {
@@ -47,7 +53,7 @@ const MovieSearch = () => {
                 <h3>Search movie Title</h3>
                 <div className='fields_container'>
                     <form action="" className='fields' onSubmit={getData}>
-                        <input type="text" onChange={handleInputChange} name="movie_title" placeholder="Enter movie title" autoComplete="off" value={movieQuery} required/>
+                        <input type="text" onChange={handleInputChange} name="movie_title" placeholder="Enter movie title" autoComplete="off" value={movieQuery} ref={movieQueryInputRef} required/>
                         <button type='submit' className='btn btn-primary'>Search</button>
                     </form>
                 </div>

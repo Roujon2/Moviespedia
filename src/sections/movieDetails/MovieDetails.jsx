@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import './movieDetails.css'
+import {HiCursorClick} from 'react-icons/hi'
 
 /* TODO:
   - Port all the css and jsx in MovieSearch to this - DONE
@@ -56,6 +57,8 @@ const MovieDetails = ({movieData}) => {
               </ul>
             </div>
           </div>
+          {/* Little cursor icon */}
+          <HiCursorClick className='cursor_icon'/>
         </div>
        
         <p className='synopsis'>{synopsis}</p>

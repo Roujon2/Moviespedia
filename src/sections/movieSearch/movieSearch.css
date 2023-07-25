@@ -29,6 +29,10 @@
     font-family: 'Courier Prime', monospace;
 }
 
+.fields input:focus::placeholder{
+    color: transparent;
+}
+
 /* For removing number spinner */
 /* For Firefox */
 input[type='number'] {
