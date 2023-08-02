@@ -17,6 +17,9 @@ const MovieSearch = () => {
     // Reference of the movie search input text field
     const movieQueryInputRef = useRef(null);
 
+    // Reference of the MovieDetails component
+    const movieDetailsRef = useRef(null);
+
     const [data, setData] = useState(null);
 
     const handleInputChange = (event) => {
@@ -62,7 +65,7 @@ const MovieSearch = () => {
 
                 <div className='movie_details_container'>
                     {/* Render MovieDetails if data is loaded */}
-                    {data && <MovieDetails movieData={data}/>}
+                    {data && <MovieDetails movieData={data} movieDetailsRef={movieDetailsRef}/>}
                 </div>
             </div>
         </section>

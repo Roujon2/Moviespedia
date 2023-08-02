@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useState } from 'react';
 import './movieDetails.css'
 import {HiCursorClick} from 'react-icons/hi'
@@ -11,9 +11,17 @@ import {HiCursorClick} from 'react-icons/hi'
 
 */
 
-const MovieDetails = ({movieData}) => {
+const MovieDetails = ({movieData, movieDetailsRef}) => {
   // State variable controlling the poster flip
   const [flip, setFlip] = useState(false);
+
+  // useEffect hook
+  useEffect(() => {
+    // Scrolling down when the component is rendered
+    if (movieData && movieDetailsRef.current) {
+      movieDetailsRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [movieData, movieDetailsRef]);
 
   if (!movieData) {
     return <div>Loading...</div>;
@@ -34,7 +42,7 @@ const MovieDetails = ({movieData}) => {
 
 
   return (
-    <div className={`containter movie_info_container`}>
+    <div ref={movieDetailsRef} className={`containter movie_info_container`}>
       <h2>{title}</h2>
       {/* Displays list of genres if it exists */}
       {genres && (
