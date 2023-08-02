@@ -17,7 +17,6 @@ const MovieSearch = () => {
     // Reference of the movie search input text field
     const movieQueryInputRef = useRef(null);
 
-
     const [data, setData] = useState(null);
 
     const handleInputChange = (event) => {
@@ -35,15 +34,18 @@ const MovieSearch = () => {
         // Removing the focus from the input field
         movieQueryInputRef.current.blur();
 
-        axiosRequest.get(`/search/movie?query=${movieQuery}&include_adult=false&language=en-US&api_key=${api_key}`)
-        .then((response) => {
-            // Set the data to the first result
-            const firstMovie = response.data.results[0];
+        // Doing the search query
+        var response = await axiosRequest.get(`/search/movie?query=${movieQuery}&include_adult=false&language=en-US&api_key=${api_key}`);
+        var firstMovie = response.data.results[0];
+
+        // Second api call specific to the ID of the first movie
+        if(firstMovie) {
+            const movieId = firstMovie.id;
+            response = await axiosRequest.get(`/movie/${movieId}?api_key=${api_key}&language=en-US`);
+            firstMovie = response.data;
             setData(firstMovie);
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+        }
+
     }
 
     return (

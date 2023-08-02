@@ -4,6 +4,7 @@
 .movie_info_container h2{
     font-size: 2rem;
     font-weight: 700;
+
 }
 
 .movie_info{
@@ -25,6 +26,30 @@
     position: relative;
 }
 
+/* CSS for the genre list */
+.genre_list {
+    list-style: none;
+    display: flex; /* Use flexbox */
+    flex-wrap: wrap; /* Allow genres to wrap to a new line if needed */
+    padding: 0;
+    margin: 0;
+}
+/* Style for each genre box */
+.genre_list li {
+    background-color: var(--color-bg-secondary);
+    padding: 0.4rem;
+    margin: 0.2rem;
+    border-radius: 1rem;
+
+    border: 1px solid;
+
+    transition: var(--transition);
+
+    cursor: default;
+}
+.genre_list li:hover{
+    background-color: transparent;
+}
 
 /* CSS for the movie card */
 .movie_card{
@@ -82,11 +107,20 @@
     list-style: none;
     padding: 0;
     text-align: center;
+    max-width: fit-content;
 }
 
-.synopsis{
+.synopsis_container{
     margin-top: auto;
     margin-bottom: auto;
+
+    background-color: #5cb8df60;
+    padding: 1rem;
+    border-radius: 2rem;
+    height: auto;
+}
+
+.synopsis_container p{
     /* Adjusting the size of the text depending on the width of the page */
     font-size: 1.3rem;
     line-height: 1.5;
@@ -112,7 +146,7 @@
         max-width: 40%;
     }
 
-    .synopsis{
+    .synopsis_container p{
         font-size: 1.2rem
     }
 
@@ -126,7 +160,7 @@
         max-width: 60%;
     }
 
-    .synopsis{
+    .synopsis_container p{
         font-size: 0.8rem
     }
 }

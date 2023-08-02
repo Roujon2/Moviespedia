@@ -5,8 +5,9 @@ import {HiCursorClick} from 'react-icons/hi'
 
 /* TODO:
   - Port all the css and jsx in MovieSearch to this - DONE
-  - Fix genres
+  - Fix genres - DONE
   - Design the css (add a flip card effect for poster on hover, displaying the director, actors, etc.) - Almost done
+  - Scroll down to the section when the button is clicked
 
 */
 
@@ -20,7 +21,8 @@ const MovieDetails = ({movieData}) => {
 
   // Extracting information from the movieData object
   const title = movieData.original_title;
-  const genres = movieData.genres || movieData.genre_ids;
+  // Getting the genres (if it exists) and mapping through it to get the genre names in an array
+  const genres = movieData.genres?.map((genre) => genre.name);
   const posterPath = movieData.poster_path ? "https://image.tmdb.org/t/p/w500" + movieData.poster_path : '';
   const synopsis = movieData.overview;
 
@@ -34,14 +36,14 @@ const MovieDetails = ({movieData}) => {
   return (
     <div className={`containter movie_info_container`}>
       <h2>{title}</h2>
-      {/*<ul className='genre_list'>
-        {
-          // Creating the list of genres by mapping through the genre list TODO: Fix the genre list
-          genres.map((genre, index) => {
-            return (<li key={index}>{genre.name}</li>);
-          })
-        }
-      </ul>*/}
+      {/* Displays list of genres if it exists */}
+      {genres && (
+        <ul className='genre_list'>
+          {genres.map((genre, index) => (
+            <li key={index}>{genre}</li>
+          ))}
+        </ul>
+      )}
       <div className={`movie_info`}>
         <div className="movie_card_container">
           {/* The card has a click listener, setting the class name to flipped or not depending on its state */}
@@ -49,7 +51,8 @@ const MovieDetails = ({movieData}) => {
             <img src={posterPath} alt="" onClick={() => setFlip(!flip)}/>
 
             <div className="cast_info" onClick={() => setFlip(!flip)}>
-              <h3>Directed by {cast.director}</h3>
+              <h3>Directed by</h3>
+              <h2>{cast.director}</h2>  
               <ul>
                 {cast.actors.map((actor, index) => (
                   <li key={index}>{actor}</li>
@@ -60,8 +63,11 @@ const MovieDetails = ({movieData}) => {
           {/* Little cursor icon */}
           <HiCursorClick className='cursor_icon'/>
         </div>
-       
-        <p className='synopsis'>{synopsis}</p>
+        
+        <div className="synopsis_container">
+          <p className='synopsis'>{synopsis}</p>
+        </div>
+    
       </div>
     </div>
   )
