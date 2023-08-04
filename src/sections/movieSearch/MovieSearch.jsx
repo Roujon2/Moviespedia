@@ -1,14 +1,12 @@
 import React, { useRef } from 'react'
 import './movieSearch.css'
 import { useState } from 'react'
-import { axiosRequest } from '../../api.js';
+
+// Importing the axiosRequest functions (api calls)
+import { searchMovies, getMovieDetails } from '../../backend/apiService';
 
 // Importing the movie details component
 import MovieDetails from '../movieDetails/MovieDetails.jsx';
-
-
-var api_key = process.env.REACT_APP_TMDB_API_KEY;
-
 
 const MovieSearch = () => {
     // Tracking the input of the user
@@ -16,9 +14,6 @@ const MovieSearch = () => {
 
     // Reference of the movie search input text field
     const movieQueryInputRef = useRef(null);
-
-    // Reference of the MovieDetails component
-    const movieDetailsRef = useRef(null);
 
     const [data, setData] = useState(null);
 
@@ -37,16 +32,46 @@ const MovieSearch = () => {
         // Removing the focus from the input field
         movieQueryInputRef.current.blur();
 
-        // Doing the search query
-        var response = await axiosRequest.get(`/search/movie?query=${movieQuery}&include_adult=false&language=en-US&api_key=${api_key}`);
-        var firstMovie = response.data.results[0];
+        // Getting data from backend
+        try{
+            // Doing the search query and getting the first movie
+            const searchResults = await searchMovies(movieQuery);
+            const firstMovie = searchResults[0];
 
-        // Second api call specific to the ID of the first movie
-        if(firstMovie) {
-            const movieId = firstMovie.id;
-            response = await axiosRequest.get(`/movie/${movieId}?api_key=${api_key}&language=en-US`);
-            firstMovie = response.data;
-            setData(firstMovie);
+            // If the first movie exists, get the details
+            if(firstMovie){
+                const movieId = firstMovie.id;
+                const movieInfo = await getMovieDetails(movieId);
+
+                // Retrieving the cast details from the object
+                // Making the credits object template
+                const credits = {
+                    director: '',
+                    actors: []
+                }
+
+                // Getting first 2 actors' names
+                credits.actors = movieInfo.credits.cast.slice(0, 2).map((actor)=>actor.name);
+
+                // Getting the director's name
+                for(const member of movieInfo.credits.crew){
+                    if(member.job === 'Director'){
+                        credits.director = member.name;
+                        break;
+                    }
+                }
+
+                // Deleting extra data
+                delete movieInfo.credits;
+
+                // Adding the cleaned and parsed credits to the movieInfo object
+                movieInfo.credits = credits;
+
+                setData(movieInfo);
+            }
+
+        }catch(error){
+            console.error(error);
         }
 
     }
@@ -65,7 +90,7 @@ const MovieSearch = () => {
 
                 <div className='movie_details_container'>
                     {/* Render MovieDetails if data is loaded */}
-                    {data && <MovieDetails movieData={data} movieDetailsRef={movieDetailsRef}/>}
+                    {data && <MovieDetails movieData={data}/>}
                 </div>
             </div>
         </section>

@@ -1,5 +1,5 @@
 .movie_info_container{
-    margin-top: 2rem;
+    margin: 2rem 0;
 }
 .movie_info_container h2{
     font-size: 2rem;
@@ -103,11 +103,22 @@
     opacity: 0.8;
 }
 
+.cast_info .director{
+    max-width: 100%;
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    text-align: center;
+}
+
 .cast_info ul {
+    margin-top: 2rem;
     list-style: none;
     padding: 0;
     text-align: center;
     max-width: fit-content;
+}
+.cast_info ul li{
+    max-width: 100%;
+    font-size: clamp(0.5rem, 2.5vw, 1.3rem);
 }
 
 .synopsis_container{
