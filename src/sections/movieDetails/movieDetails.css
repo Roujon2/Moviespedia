@@ -67,12 +67,12 @@
     overflow: hidden;
     transition: var(--transition);
     cursor: pointer;
-
 }
 /* Scale when the mouse hovers over */
 .movie_card img:hover{
     opacity: 0.8;
 }
+
 
 .movie_card.flipped{
     --rotate-y: 180deg;

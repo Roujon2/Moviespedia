@@ -21,10 +21,16 @@ const MovieSearch = () => {
         setMovieQuery(event.target.value.toString());
     }
 
+    // State variable tracking the loading (to update MovieDetails)
+    const [isLoading, setIsLoading] = useState(false);
+
     // When the submit button is clicked
     const getData = async (event) => {
         // Prevents the page from reloading when the form is submitted
         event.preventDefault();
+
+        // Loading is true
+        setIsLoading(true);
 
         // Reset the text input field
         setMovieQuery('');
@@ -68,6 +74,7 @@ const MovieSearch = () => {
                 movieInfo.credits = credits;
 
                 setData(movieInfo);
+                setIsLoading(false);
             }
 
         }catch(error){
@@ -90,7 +97,7 @@ const MovieSearch = () => {
 
                 <div className='movie_details_container'>
                     {/* Render MovieDetails if data is loaded */}
-                    {data && <MovieDetails movieData={data}/>}
+                    {isLoading ? <div>Loading...</div> : (data && <MovieDetails movieData={data} />)}
                 </div>
             </div>
         </section>
