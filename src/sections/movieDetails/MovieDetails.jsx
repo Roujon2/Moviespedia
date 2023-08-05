@@ -12,7 +12,7 @@ import loadingIcon from '../../assets/loading_spinner.gif'
   - Scroll down to the section when the button is clicked - DONE (fixed with timeout)
   - Add null movie handler
   - Add a loading screen - Almost done (need to get a proper loading icon)
-
+  - Add watch providers (with icons) -> Default US but set a dropbox for region
 
 */
 

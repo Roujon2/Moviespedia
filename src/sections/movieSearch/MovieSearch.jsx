@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import './movieSearch.css'
 import { useState } from 'react'
 
@@ -23,11 +23,28 @@ const MovieSearch = () => {
 
     // State variable tracking the loading (to update MovieDetails)
     const [isLoading, setIsLoading] = useState(false);
+    const [loadingDots, setLoadingDots] = useState(''); // For the loading dots
+
+    // useEffect hook to update the loading dots
+    useEffect(() => {
+        if(isLoading){
+            console.log('Loading dots');
+            const interval = setInterval(() => {
+            setLoadingDots((prevDots) => {
+                return prevDots.length < 3 ? prevDots + '.' : ''; // Add a dot or reset
+            });
+            }, 500); // Delay time
+            return () => clearInterval(interval); // Clean up the interval on unmount
+        }
+    }, [isLoading]);
 
     // When the submit button is clicked
     const getData = async (event) => {
         // Prevents the page from reloading when the form is submitted
         event.preventDefault();
+
+        //Resets the data
+        setData(null); 
 
         // Loading is true
         setIsLoading(true);
@@ -86,7 +103,7 @@ const MovieSearch = () => {
     return (
         <section>
             <div className="container movie_search_container">
-                <h1>Movie Search</h1>
+                <h1>Moviespedia</h1>
                 <h3>Search movie Title</h3>
                 <div className='fields_container'>
                     <form action="" className='fields' onSubmit={getData}>
@@ -97,7 +114,13 @@ const MovieSearch = () => {
 
                 <div className='movie_details_container'>
                     {/* Render MovieDetails if data is loaded */}
-                    {isLoading ? <div>Loading...</div> : (data && <MovieDetails movieData={data} />)}
+                    {isLoading ? (
+                        <div className='loading_container'>
+                            Loading{loadingDots}
+                        </div>
+                    ) : (
+                        data && <MovieDetails movieData={data} />
+                    )}
                 </div>
             </div>
         </section>

@@ -119,6 +119,7 @@
 .cast_info ul li{
     max-width: 100%;
     font-size: clamp(0.5rem, 2.5vw, 1.3rem);
+    margin: 1.3rem 0;
 }
 
 .synopsis_container{
