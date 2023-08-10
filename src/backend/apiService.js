@@ -29,7 +29,7 @@ export const getMovieDetails = async (movie_id) => {
                 api_key: api_key,
                 language: 'en-US',
                 // Appending the cast to the reponse
-                append_to_response: 'credits'
+                append_to_response: 'credits,watch/providers'
             },
         });
         return response.data;

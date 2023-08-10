@@ -14,9 +14,16 @@
     gap: 1rem;
 }
 
+.movie_poster_providers_container{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
 .movie_card_container{
     margin-top: 2rem;
-    max-width: 65%;
+    width: 65%;
     background: linear-gradient(45deg, transparent, #5bc4e873, transparent);
     padding: 1rem;
     border-radius: 2rem;
@@ -73,9 +80,13 @@
     opacity: 0.8;
 }
 
-
 .movie_card.flipped{
     --rotate-y: 180deg;
+}
+
+.poster_loading{
+    display: flex;
+    justify-content: center;
 }
 
 /* Styles for the cast information behind the poster */
@@ -103,9 +114,13 @@
     opacity: 0.8;
 }
 
+.cast_info h3{
+    font-size: clamp(1rem, 1.5vw, 2rem);
+}
+
 .cast_info .director{
     max-width: 100%;
-    font-size: clamp(1rem, 2.5vw, 2rem);
+    font-size: clamp(1.5rem, 2.5vw, 3rem);
     text-align: center;
 }
 
@@ -120,6 +135,30 @@
     max-width: 100%;
     font-size: clamp(0.5rem, 2.5vw, 1.3rem);
     margin: 1.3rem 0;
+}
+
+/* Style for the watch provider logos */
+.watch_provider_logos{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+    max-width: 50%;
+}
+
+.logo_container{
+    height: auto;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    max-width: 12%;
+    border: 1px solid var(--color-bg-secondary);
+}
+.provider_logo{
+    transition: var(--transition);
+}
+.provider_logo:hover{
+    opacity: 0.5;
 }
 
 .synopsis_container{
@@ -141,9 +180,24 @@
 
 .cursor_icon{
     position: absolute;
-    right: 3%;
-    top: 95%;
+    right: 0;
+    bottom: 0;
+    transform: translate(-60%, -60%);
     color: #0a0034;
+}
+
+/* When there are no search results */
+.null_movie{
+    margin-top: 2rem;
+    color: #7b0000;
+}
+
+
+/* When the poster of the movie doesn't exist */
+.invalid_poster{
+    display: flex;
+    justify-content: center;
+    color: #7b0000;
 }
 
 
@@ -155,15 +209,12 @@
     }
 
     .movie_card_container{
-        max-width: 40%;
+        max-width: 50%;
     }
 
     .synopsis_container p{
         font-size: 1.2rem
     }
-
-
-
 }
 
 /*  Media Queries (Small Devices)  */
@@ -174,5 +225,17 @@
 
     .synopsis_container p{
         font-size: 0.8rem
+    }
+
+    .cast_info h3{
+        font-size: 0.5rem;
+    }
+
+    .cast_info .director{
+        font-size: 0.8rem;
+    }
+
+    .cast_info ul {
+        margin-top: 0.5rem;
     }
 }
