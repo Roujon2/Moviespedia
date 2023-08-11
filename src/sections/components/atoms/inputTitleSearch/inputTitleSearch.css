@@ -7,6 +7,7 @@
     resize: none;
     color: var(--color-light);
     font-family: 'Courier Prime', monospace;
+    height: auto;
 }
 .input_title_search:focus::placeholder{
     color: transparent;
@@ -14,4 +15,26 @@
 /* For the placeholder in the input text */
 ::placeholder{
     color: var(--color-primary);
+}
+
+/*  Media Queries (Medium Devices) */
+@media screen and (max-width: 1024px){
+    .input_title_search{
+        padding: 0.1rem;
+        font-size: 0.8rem;
+    }
+}
+
+/*  Media Queries (Small Devices)  */
+@media screen and (max-width: 600px){
+    .input_title_search{
+        width: 40%;
+    }
+}
+
+/*  Media Queries (Very Small Devices)  */
+@media screen and (max-width: 390px){
+    .input_title_search{
+        width: 100%;
+    }
 }

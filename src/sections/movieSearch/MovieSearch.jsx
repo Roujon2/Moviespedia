@@ -8,6 +8,8 @@ import SearchForm from '../components/molecules/searchForm/SearchForm.jsx';
 
 // Importing the axiosRequest functions (api calls)
 import { searchMovies, getMovieDetails } from '../../backend/apiService';
+// Importing data parser function
+import { parseMovieData } from '../../backend/movieDataParser';
 
 // Importing the movie details component
 import MovieDetails from '../movieDetails/MovieDetails.jsx';
@@ -71,8 +73,7 @@ const MovieSearch = () => {
             movieQueryInputRef.current.blur();
         }
       
-
-        // Getting data from backend
+        // Getting data and parsing from backend
         try{
             // Doing the search query and getting the first movie
             const searchResults = await searchMovies(movieQuery);
@@ -83,42 +84,11 @@ const MovieSearch = () => {
                 const movieId = firstMovie.id;
                 const movieInfo = await getMovieDetails(movieId);
 
-                // Retrieving the cast details from the object
-                // Making the credits object template
-                const credits = {
-                    director: '',
-                    actors: []
-                }
+                // Parsing the data
+                const parsedMovieInfo = parseMovieData(movieInfo, watchRegion);
 
-                // Getting first 2 actors' names
-                credits.actors = movieInfo.credits.cast.slice(0, 2).map((actor)=>actor.name);
-
-                // Getting the director's name
-                for(const member of movieInfo.credits.crew){
-                    if(member.job === 'Director'){
-                        credits.director = member.name;
-                        break;
-                    }
-                }
-
-                // Deleting extra data
-                delete movieInfo.credits;
-
-                // Adding the cleaned and parsed credits to the movieInfo object
-                movieInfo.credits = credits;
-
-                // Adding the watch region with list of platforms to the movieInfo object
-                const watchProviders = movieInfo["watch/providers"].results[watchRegion]?.flatrate;
-
-                console.log(watchProviders);
-
-                // Adding the watch providers list to the movieInfo object (may be undefined)
-                movieInfo.watchProviders = watchProviders;
-
-                // Setting the data as valid
-                movieInfo.state = true;
-
-                setData(movieInfo);
+                // Setting the data
+                setData(parsedMovieInfo);
                 setIsLoading(false);
 
             }else{ // Movie data is undefined (no movie with that search found)

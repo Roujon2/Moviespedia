@@ -1,6 +1,8 @@
 import React from 'react'
 import Select from 'react-select'
 
+import './watchRegionDropdown.css'
+
 const customRegionStyles = {
   container: (provided) => ({
     width: '200px', // Set a fixed width
@@ -17,12 +19,18 @@ const regionOptions = [
 
 const WatchRegionDropdown = ({selectedRegion, onChange}) => {
   return (
-    <Select
+    <div className="watch_region">
+      <h3>
+        Select watch region
+      </h3>
+      <Select
         options={regionOptions}
         value={regionOptions.find((region) => region.value === selectedRegion)}
         onChange={(selectedRegion) => onChange(selectedRegion.value)}
         styles={customRegionStyles}
-    />
+      />
+    </div>
+
   )
 }
 

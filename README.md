@@ -1,4 +1,4 @@
-# Movie Searcher
+# MoviesPedia
 Website displaying movie details through search queries and available watch platforms
 for particular regions.
 
