@@ -11,8 +11,12 @@ import { Ring } from 'react-awesome-spinners'
   - Design the css (add a flip card effect for poster on hover, displaying the director, actors, etc.) - DONE
   - Scroll down to the section when the button is clicked - DONE (fixed with timeout)
   - Add null movie handler (When the movie doesn't exist)
-  - Add a loading screen - Almost done (need to get a proper loading icon)
-  - Add watch providers (with icons) -> Default US but set a dropbox for region
+  - Add a loading screen - DONE
+  - Add watch providers (with icons) -> Default US but set a dropbox for region - DONE
+  - Customize the watch providers icons - DONE
+  - Change up the region dropdown (add more regions)
+  - Add scrollable container for similar movies
+  - Add similar movies
 
 */
 

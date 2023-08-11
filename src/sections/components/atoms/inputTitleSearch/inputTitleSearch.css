@@ -1,0 +1,17 @@
+/* Styles for the movie title input */
+.input_title_search{
+    padding: 0.3rem;
+    border-radius: 0.5rem;
+    background: var(--color-bg);
+    border: 2px solid var(--color-primary-secondary);
+    resize: none;
+    color: var(--color-light);
+    font-family: 'Courier Prime', monospace;
+}
+.input_title_search:focus::placeholder{
+    color: transparent;
+}
+/* For the placeholder in the input text */
+::placeholder{
+    color: var(--color-primary);
+}

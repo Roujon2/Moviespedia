@@ -3,14 +3,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: center;
+    gap: 1rem;
 }
 
-/* Just making the font bold */
-.movie_search_container h1{
-    font-weight: 700;
-    font-size: 7rem;
-}
 
 .fields{
     display: flex;

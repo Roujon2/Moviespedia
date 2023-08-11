@@ -2,20 +2,25 @@ import React, { useEffect, useRef } from 'react'
 import './movieSearch.css'
 import { useState } from 'react'
 
+// Importing molecule components
+import Header from '../components/molecules/header/Header.jsx';
+import SearchForm from '../components/molecules/searchForm/SearchForm.jsx';
+
 // Importing the axiosRequest functions (api calls)
 import { searchMovies, getMovieDetails } from '../../backend/apiService';
 
 // Importing the movie details component
 import MovieDetails from '../movieDetails/MovieDetails.jsx';
 
-// SOURCE OF WATCH PROVIDER DATA FROM JUSTWATCH AND TMDB
-import WatchRegionDropdown from '../components/WatchRegionDropdown';
-
 
 const MovieSearch = () => {
+    
     // Tracking the input of the user
     const [movieQuery, setMovieQuery] = useState('');
-
+    // Updating the movieQuery state variable when the user types
+    const handleInputChange = (event) => {
+        setMovieQuery(event.target.value.toString());
+    };
     // Reference of the movie search input text field
     const movieQueryInputRef = useRef(null);
 
@@ -24,10 +29,6 @@ const MovieSearch = () => {
 
     // Selected watch region state variable
     const [watchRegion, setWatchRegion] = useState('US'); // Default region
-
-    const handleInputChange = (event) => {
-        setMovieQuery(event.target.value.toString());
-    }
 
     // State variable tracking the loading (to update MovieDetails)
     const [isLoading, setIsLoading] = useState(false);
@@ -66,7 +67,10 @@ const MovieSearch = () => {
         setMovieQuery('');
 
         // Removing the focus from the input field
-        movieQueryInputRef.current.blur();
+        if (movieQueryInputRef.current) {
+            movieQueryInputRef.current.blur();
+        }
+      
 
         // Getting data from backend
         try{
@@ -138,19 +142,19 @@ const MovieSearch = () => {
     return (
         <section>
             <div className="container movie_search_container">
-                <h1>Moviespedia</h1>
-                <h3>Search movie Title</h3>
-                <div className='fields_container'>
-                    <form action="" className='fields' onSubmit={getData}>
-                        <div className="input_container">
-                            <input type="text" onChange={handleInputChange} name="movie_title" placeholder="Enter movie title" autoComplete="off" value={movieQuery} ref={movieQueryInputRef} required/>
-                            <WatchRegionDropdown selectedRegion={watchRegion} onChange={handleRegionChange} />
-                        </div>
-                        <div className="submit_button_container">
-                            <button type='submit' className='btn btn-primary'>Search</button>
-                        </div>
-                    </form>
-                </div>
+                
+                {/* Header component */}
+                <Header />
+                
+                {/* Movie title Search form component*/}
+                <SearchForm
+                    handleSubmit={getData}
+                    handleInputChange={handleInputChange}
+                    watchRegion={watchRegion}
+                    handleRegionChange={handleRegionChange}
+                    movieQuery={movieQuery}
+                    inputRef={movieQueryInputRef}
+                />
 
                 <div className='movie_details_container'>
                     {/* Render MovieDetails if data is loaded */}
