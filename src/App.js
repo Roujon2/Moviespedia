@@ -1,15 +1,11 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
-import MovieSearch from './sections/movieSearch/MovieSearch';
-
-
-var test_key = process.env.REACT_APP_TEST_API_KEY;
-
+import React from 'react';
+import MovieTemplate from './sections/components/templates/movieTemplate/MovieTemplate.jsx';
 
 function App(){
   return(
     <div>
-      <MovieSearch/>
+      <MovieTemplate/>
     </div>
   )
 }

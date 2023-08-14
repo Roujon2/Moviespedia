@@ -1,22 +1,21 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import './movieSearch.css'
 import { useState } from 'react'
 
+// Importing the loading animation component
+import Loading from '../../atoms/loading/Loading.jsx';
+
 // Importing molecule components
-import Header from '../components/molecules/header/Header.jsx';
-import SearchForm from '../components/molecules/searchForm/SearchForm.jsx';
+import Header from '../../molecules/header/Header.jsx';
+import SearchForm from '../../molecules/searchForm/SearchForm.jsx';
 
 // Importing the axiosRequest functions (api calls)
-import { searchMovies, getMovieDetails } from '../../backend/apiService';
+import { searchMovies, getMovieDetails } from '../../../../backend/apiService';
 // Importing data parser function
-import { parseMovieData } from '../../backend/movieDataParser';
-
-// Importing the movie details component
-import MovieDetails from '../movieDetails/MovieDetails.jsx';
+import { parseMovieData } from '../../../../backend/movieDataParser';
 
 
-const MovieSearch = () => {
-    
+const MovieSearch = ({ onMovieFetched, onLoading, isLoading }) => {
     // Tracking the input of the user
     const [movieQuery, setMovieQuery] = useState('');
     // Updating the movieQuery state variable when the user types
@@ -26,28 +25,8 @@ const MovieSearch = () => {
     // Reference of the movie search input text field
     const movieQueryInputRef = useRef(null);
 
-    // Movie data state variable
-    const [data, setData] = useState(null);
-
     // Selected watch region state variable
     const [watchRegion, setWatchRegion] = useState('US'); // Default region
-
-    // State variable tracking the loading (to update MovieDetails)
-    const [isLoading, setIsLoading] = useState(false);
-    const [loadingDots, setLoadingDots] = useState(''); // For the loading dots
-
-    // useEffect hook to update the loading dots
-    useEffect(() => {
-        if(isLoading){
-            const interval = setInterval(() => {
-            setLoadingDots((prevDots) => {
-                return prevDots.length < 3 ? prevDots + '.' : ''; // Add a dot or reset
-            });
-            }, 500); // Delay time
-            return () => clearInterval(interval); // Clean up the interval on unmount
-        }
-    }, [isLoading]);
-
 
     // When the region is changed from the dropdown
     const handleRegionChange = (selectedRegion) => {
@@ -57,13 +36,10 @@ const MovieSearch = () => {
     // When the submit button is clicked
     const getData = async (event) => {
         // Prevents the page from reloading when the form is submitted
-        event.preventDefault();
+        event.preventDefault(); 
 
-        //Resets the data
-        setData(null); 
-
-        // Loading is true
-        setIsLoading(true);
+        // Setting the loading animation
+        onLoading();
 
         // Reset the text input field
         setMovieQuery('');
@@ -88,23 +64,28 @@ const MovieSearch = () => {
                 const parsedMovieInfo = parseMovieData(movieInfo, watchRegion);
 
                 // Setting the data
-                setData(parsedMovieInfo);
-                setIsLoading(false);
+                onMovieFetched(parsedMovieInfo);
 
             }else{ // Movie data is undefined (no movie with that search found)
-                // Stop loading animation
-                setIsLoading(false);
-
                 // Setting the data as invalid
                 const movieInfo = {
                     state: false
                 };
 
-                setData(movieInfo);
+                // Setting the data
+                onMovieFetched(movieInfo);
             }
 
         }catch(error){
             console.error(error);
+            
+            // Setting the data as invalid
+            const movieInfo = {
+                state: false
+            };
+
+            // Setting the data
+            onMovieFetched(movieInfo);
         }
 
     }
@@ -126,16 +107,9 @@ const MovieSearch = () => {
                     inputRef={movieQueryInputRef}
                 />
 
-                <div className='movie_details_container'>
-                    {/* Render MovieDetails if data is loaded */}
-                    {isLoading ? (
-                        <div className='loading_container'>
-                            Loading{loadingDots}
-                        </div>
-                    ) : (
-                        data && <MovieDetails movieData={data} />
-                    )}
-                </div>
+                {/* Loading component */}
+                {isLoading && <Loading/>}
+                
             </div>
         </section>
     )

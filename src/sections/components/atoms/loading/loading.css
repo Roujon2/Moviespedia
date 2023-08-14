@@ -1,0 +1,18 @@
+/* Styles for the loading animation */
+.loading_container {
+    display: flex;
+    margin-top: 1rem;
+    font-size: clamp(0.8rem, 2.5vw, 1.5rem);
+    opacity: 0.4;
+    animation: pulse 2s infinite;
+}
+
+
+@keyframes pulse {
+    0%, 100% {
+      opacity: 0.1;
+    }
+    50% {
+      opacity: 0.6;
+    }
+}
