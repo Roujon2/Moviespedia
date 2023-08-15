@@ -1,0 +1,67 @@
+/* Styles for the movie details header */
+.movie_title{
+    display: flex;
+    font-size: 2rem;
+    font-weight: 700;
+
+    line-height: 2rem;
+}
+
+/* CSS for the genre list */
+.genre_list {
+    list-style: none;
+    display: flex; /* Use flexbox */
+    flex-wrap: wrap; /* Allow genres to wrap to a new line if needed */
+    padding: 0;
+    margin: 0;
+}
+/* Style for each genre box */
+.genre_list li {
+    background-color: var(--color-bg-secondary);
+    padding: 0.4rem;
+    margin: 0.2rem;
+    border-radius: 1rem;
+
+    border: 1px solid;
+
+    transition: var(--transition);
+
+    cursor: default;
+    font-size: 1rem;
+}
+.genre_list li:hover{
+    background-color: transparent;
+}
+
+
+/*  Media Queries (Small Devices)  */
+@media screen and (max-width: 600px){
+    .movie_title{
+        font-size: 1.5rem;
+        
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .genre_list{
+        align-items: center;
+        justify-content: center;
+    }
+
+    .genre_list li{
+        font-size: 0.7rem;
+    }
+}
+
+/*  Media Queries (Very Small Devices)  */
+@media screen and (max-width: 360px){
+    .movie_title{
+        font-size: 1.2rem;
+        line-height: 1.3rem;
+    }
+
+    .genre_list li{
+        font-size: 0.5rem;
+    }
+}

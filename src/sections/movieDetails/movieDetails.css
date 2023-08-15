@@ -1,10 +1,5 @@
 .movie_info_container{
-    margin: 2rem 0;
-}
-.movie_info_container h2{
-    font-size: 2rem;
-    font-weight: 700;
-
+    margin: 3rem 5rem;
 }
 
 .movie_info{
@@ -31,31 +26,6 @@
     margin-right: auto;
     height: auto;
     position: relative;
-}
-
-/* CSS for the genre list */
-.genre_list {
-    list-style: none;
-    display: flex; /* Use flexbox */
-    flex-wrap: wrap; /* Allow genres to wrap to a new line if needed */
-    padding: 0;
-    margin: 0;
-}
-/* Style for each genre box */
-.genre_list li {
-    background-color: var(--color-bg-secondary);
-    padding: 0.4rem;
-    margin: 0.2rem;
-    border-radius: 1rem;
-
-    border: 1px solid;
-
-    transition: var(--transition);
-
-    cursor: default;
-}
-.genre_list li:hover{
-    background-color: transparent;
 }
 
 /* CSS for the movie card */
@@ -203,6 +173,12 @@
 
 /*  Media Queries (Medium Devices) */
 @media screen and (max-width: 1024px){
+
+    .movie_info_container{
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
     .movie_info{
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -219,6 +195,12 @@
 
 /*  Media Queries (Small Devices)  */
 @media screen and (max-width: 600px){
+
+    .movie_info_container{
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
     .movie_card_container{
         max-width: 60%;
     }
