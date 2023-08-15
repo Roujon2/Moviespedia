@@ -1,0 +1,27 @@
+/* Styles for the list of watch provider logos */
+
+/* Style for the container of all watch provider logos */
+.watch_provider_logos{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+    max-width: 50%;
+}
+
+/* Style for an individual logo */
+.logo_container{
+    height: auto;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    max-width: 12%;
+    border: 1px solid var(--color-bg-secondary);
+}
+/* Style for logo image */
+.provider_logo{
+    transition: var(--transition);
+}
+.provider_logo:hover{
+    opacity: 0.5;
+}

@@ -1,0 +1,18 @@
+/* Styles for the movie card containing poster and cast info */
+.movie_card{
+    position: relative;
+    transform: rotateY(var(--rotate-y, 0));
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: var(--transition);
+}
+
+.movie_card.flipped{
+    --rotate-y: 180deg;
+}
+
+.poster_loading{
+    display: flex;
+    justify-content: center;
+}
+

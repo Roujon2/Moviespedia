@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import MovieSearch from '../../organisms/movieSearch/MovieSearch.jsx';
-import MovieDetails from '../../../movieDetails/MovieDetails.jsx';
+import MovieDetails from '../../organisms/movieDetails/MovieDetails.jsx';
 
 const MovieTemplate = () => {
     const [movieData, setMovieData] = useState(null);

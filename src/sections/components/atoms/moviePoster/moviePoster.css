@@ -1,0 +1,27 @@
+/* Styles for the movie poster image */
+.poster_image{
+    backface-visibility: hidden;
+    position: relative;
+    display: block;
+    border-radius: 2.3rem;
+    overflow: hidden;
+    transition: var(--transition);
+    cursor: pointer;
+}
+.poster_image:hover{
+    opacity: 0.8;
+}
+
+/* When the poster of the movie doesn't exist */
+.invalid_poster{
+    display: flex;
+    justify-content: center;
+    color: #7b0000;
+}
+
+/*  Media Queries (Very Small Devices)  */
+@media screen and (max-width: 390px){
+    .poster_image{
+        border-radius: 1rem;
+    }
+}

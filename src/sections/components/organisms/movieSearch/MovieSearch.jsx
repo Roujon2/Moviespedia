@@ -26,7 +26,7 @@ const MovieSearch = ({ onMovieFetched, onLoading, isLoading }) => {
     const movieQueryInputRef = useRef(null);
 
     // Selected watch region state variable
-    const [watchRegion, setWatchRegion] = useState('US'); // Default region
+    const [watchRegion, setWatchRegion] = useState('AR'); // Default region
 
     // When the region is changed from the dropdown
     const handleRegionChange = (selectedRegion) => {

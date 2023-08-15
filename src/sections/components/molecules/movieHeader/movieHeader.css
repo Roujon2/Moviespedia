@@ -37,7 +37,7 @@
 /*  Media Queries (Small Devices)  */
 @media screen and (max-width: 600px){
     .movie_title{
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         
         text-align: center;
         align-items: center;
@@ -50,18 +50,18 @@
     }
 
     .genre_list li{
-        font-size: 0.7rem;
+        font-size: 1rem;
     }
 }
 
 /*  Media Queries (Very Small Devices)  */
-@media screen and (max-width: 360px){
+@media screen and (max-width: 390px){
     .movie_title{
-        font-size: 1.2rem;
-        line-height: 1.3rem;
+        font-size: 1.8rem;
+        line-height: 1.8rem;
     }
 
     .genre_list li{
-        font-size: 0.5rem;
+        font-size: 0.8rem;
     }
 }

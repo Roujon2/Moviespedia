@@ -1,0 +1,114 @@
+/* Styles for displyaing the cast info on the movie card */
+.cast_info{
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-light); /* Customize the background color for the cast info */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+
+    cursor: pointer;
+    transition: var(--transition);
+
+    border-radius: 2.3rem;
+}
+.cast_info:hover{
+    opacity: 0.8;
+}
+
+/* 'Directed by' */
+.cast_info h3{
+    font-size: clamp(1rem, 1.5vw, 2rem);
+}
+/* Director name style */
+.cast_info .director{
+    max-width: 100%;
+    font-size: clamp(1.5rem, 2.5vw, 3rem);
+    text-align: center;
+}
+/* Style for list of actors */
+.cast_info ul {
+    margin-top: 2rem;
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    max-width: fit-content;
+}
+/* Style for each individual actor */
+.cast_info ul li{
+    max-width: 100%;
+    font-size: clamp(0.5rem, 1.7vw, 2rem);
+    margin: 1rem 0;
+}
+
+
+/*  Media Queries (Medium Devices)  */
+@media screen and (max-width: 1024px){
+    .cast_info h3{
+        font-size: clamp(1rem, 2.2vw, 2rem);
+    }
+
+    .cast_info .director{
+        font-size: clamp(0.8rem, 4vw, 2.5rem);
+    }
+
+    .cast_info ul {
+        margin-top: 0.5rem;
+    }
+
+    .cast_info ul li{
+        font-size: clamp(1.2rem, 2.5vw, 2rem);
+    }
+}
+
+/*  Media Queries (Small Devices)  */
+@media screen and (max-width: 600px){
+    .cast_info h3{
+        font-size: clamp(0.6rem, 2.5vw, 2rem);
+    }
+
+    .cast_info .director{
+        font-size: clamp(0.7rem, 4vw, 2rem);
+    }
+
+    .cast_info ul {
+        margin-top: 0.5rem;
+    }
+
+    .cast_info ul li{
+        font-size: clamp(0.7rem, 3.5vw, 2rem);
+    }
+}
+
+/*  Media Queries (Very Small Devices)  */
+@media screen and (max-width: 390px){
+    .cast_info{
+        border-radius: 1rem;
+    }
+
+    .cast_info h3{
+        font-size: clamp(0.3rem, 2.5vw, 1rem);
+    }
+
+    .cast_info .director{
+        font-size: clamp(0.7rem, 3.5vw, 2rem);
+    }
+
+    .cast_info ul {
+        margin: 0.5rem
+    }
+
+    .cast_info ul li{
+        font-size: clamp(0.5rem, 3vw, 2rem);
+        margin: 0.3rem;
+    }
+
+}
+

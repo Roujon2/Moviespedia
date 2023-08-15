@@ -2,16 +2,23 @@ import React from 'react'
 import './moviePoster.css'
 
 // Component dealing with the movie poster image
-const MoviePoster = ({ src, alt, onClick, onLoad, style }) => {
+const MoviePoster = ({ posterPath, alt, onCardClick, onImageLoad, posterStyle }) => {
+
+  // If the posterPath is null, undefined (doesn't exist), show the invalid poster
   return (
-    <img
-        src={src}
+    posterPath ? (
+      <img
+        src={`https://image.tmdb.org/t/p/w500${posterPath}`}
         alt={alt}
-        onClick={onClick}
-        onLoad={onLoad}
-        style={style}
-    />
-   
+        onClick={onCardClick}
+        onLoad={onImageLoad}
+        style={posterStyle}
+        className='poster_image'
+      />
+    ) : (
+      <h3 className='invalid_poster'
+          onLoad={onImageLoad}>Poster not found</h3>
+    )
   )
 }
 

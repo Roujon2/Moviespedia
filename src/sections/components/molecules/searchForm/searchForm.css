@@ -40,11 +40,15 @@
 @media screen and (max-width: 600px){
     .fields {
         flex-direction: column;
+        gap: 1.5rem;
     }
 
     .input_container{
+        flex-direction: column;
         gap: 0.3rem;
+
     }
+
 }
 
 /*  Media Queries (Very Small Devices)  */
@@ -56,6 +60,5 @@
 
     .input_container{
         flex-direction: column;
-        gap: 0.8rem;
     }
 }

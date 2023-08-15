@@ -28,7 +28,7 @@
 /*  Media Queries (Small Devices)  */
 @media screen and (max-width: 600px){
     .input_title_search{
-        width: 40%;
+        width: 100%;
     }
 }
 
