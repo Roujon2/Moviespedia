@@ -50,6 +50,8 @@ export const parseMovieData = (movieData, watchRegion) => {
     // Adding the watch region with list of platforms to the movieInfo object
     const watchProviders = movieData["watch/providers"]?.results[watchRegion]?.flatrate;
 
+    console.log(movieData["watch/providers"].results);
+
     // Adding the watch providers list to the movieInfo object (may be undefined) -> Fine because it will just display an empty list
     parsedMovieData.watchProviders = watchProviders;
 
