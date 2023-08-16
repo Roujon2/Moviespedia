@@ -31,7 +31,7 @@ const MovieTemplate = () => {
         setIsLoading(false);
     };
 
-    // When the submit button is clicked to handle the loading
+    // When the submit form button is clicked to handle the loading
     const handleLoading = () => {
         setIsLoading(true);
 
@@ -48,7 +48,7 @@ const MovieTemplate = () => {
         {movieData && <MovieDetails movieData={movieData}/>}
 
         {/* Component handling the display of the similar movies */}
-        <SimilarMovies/>
+        {movieData && <SimilarMovies movieData={movieData}/>}
     </div>
   )
 }

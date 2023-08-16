@@ -62,3 +62,7 @@ export const parseMovieData = (movieData, watchRegion) => {
     return parsedMovieData;
 
 };
+
+export const parseSimilarMovieData = (similarMovieData) => {
+    
+};

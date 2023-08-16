@@ -7,6 +7,8 @@
     overflow: hidden;
     transition: var(--transition);
     cursor: pointer;
+    width: 100%;
+    height: auto;
 }
 .poster_image:hover{
     opacity: 0.8;
@@ -17,6 +19,8 @@
     display: flex;
     justify-content: center;
     color: #7b0000;
+    width: 100%;
+    height: 100%;
 }
 
 /*  Media Queries (Very Small Devices)  */

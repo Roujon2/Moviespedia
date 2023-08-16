@@ -1,9 +1,6 @@
 import React from 'react'
 import './similarMovieButton.css'
 
-import { Ring } from 'react-awesome-spinners'
-
-
 // Component handling the display of the similar movie button, turning into a loading text when clicked
 const SimilarMovieButton = ({ onClick, isLoading }) => {
   return (

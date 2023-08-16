@@ -1,8 +1,6 @@
 /* Styles for the similar movies template */
 .similar_movies_container{
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 1.5rem;
+    margin: 1.5rem;
 }
 
 
