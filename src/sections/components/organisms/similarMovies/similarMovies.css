@@ -1,0 +1,14 @@
+/* Styles for the similar movies template */
+.similar_movies_container{
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+
+/*  Media Queries (Medium Devices)  */
+@media screen and (max-width: 1024px){
+    .similar_movies_container{
+        justify-content: center;
+    }
+}

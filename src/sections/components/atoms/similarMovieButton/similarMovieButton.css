@@ -1,0 +1,47 @@
+/* Styling for the similar movies button */
+.similar-button-container {
+    position: relative;
+}
+
+.similar_movie_button{
+    display: flex;
+    padding: 0.8rem 0.5rem;
+}
+
+.loading_text{
+    display: flex;
+    animation: pulse 2s infinite;
+    font-size: 1.2rem;
+}
+@keyframes pulse {
+    0%, 100% {
+      opacity: 0.1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+}
+
+
+/*  Media Queries (Medium Devices)  */
+@media screen and (max-width: 1024px){
+    .similar_movie_button{
+        font-size: 0.8rem;
+    }
+
+    .loading_text{
+        font-size: 1.3rem;
+    }
+}
+
+/*  Media Queries (Small Devices)  */
+@media screen and (max-width: 600px){
+    .similar_movie_button{
+        font-size: 0.7rem;
+        padding: 0.5rem 0.3rem;
+    }
+
+    .loading_text{
+        font-size: 1rem;
+    }
+}

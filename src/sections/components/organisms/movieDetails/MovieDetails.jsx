@@ -10,21 +10,6 @@ import WatchProviders from '../../atoms/watchProviders/WatchProviders.jsx'
 import MovieHeader from '../../molecules/movieHeader/MovieHeader.jsx'
 import MovieCard from '../../molecules/movieCard/MovieCard.jsx'
 
-/* TODO:
-  - Port all the css and jsx in MovieSearch to this - DONE
-  - Fix genres - DONE
-  - Design the css (add a flip card effect for poster on hover, displaying the director, actors, etc.) - DONE
-  - Scroll down to the section when the button is clicked - DONE (fixed with timeout)
-  - Add null movie handler (When the movie doesn't exist)
-  - Add a loading screen - DONE
-  - Add watch providers (with icons) -> Default US but set a dropbox for region - DONE
-  - Customize the watch providers icons - DONE
-  - Change up the region dropdown (add more regions)
-  - Add scrollable container for similar movies
-  - Add similar movies
-
-*/
-
 const MovieDetails = ({movieData}) => {
   // Component reference
   const movieDetailsRef = useRef(null);
