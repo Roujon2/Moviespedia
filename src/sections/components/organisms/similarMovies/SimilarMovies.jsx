@@ -14,7 +14,7 @@ import { parseMovieData } from '../../../../backend/movieDataParser';
 
 /* 
   TODO:
-  - Handle error when the similar movies are not found
+  - Handle error when the similar movies are not found - DONE
   - Handle when the poster is not found - DONE
 */
 
