@@ -1,6 +1,8 @@
 /* Styles for the similar movies template */
 .similar_movies_container{
-    margin: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 
@@ -8,5 +10,6 @@
 @media screen and (max-width: 1024px){
     .similar_movies_container{
         justify-content: center;
+        align-items: center;
     }
 }

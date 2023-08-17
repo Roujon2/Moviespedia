@@ -46,7 +46,7 @@ const SimilarMovies = ({ movieData }) => {
 
   return (
     <section>
-        <div className="similar_movies_container">
+        <div className="container similar_movies_container">
           {/* Handles when the get similar button is clicked */}
           {isSimilarButtonClicked ? (
             <SimilarMovieSwiper similarMovies={similarMovies}/>
