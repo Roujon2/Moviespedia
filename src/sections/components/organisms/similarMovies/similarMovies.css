@@ -7,6 +7,10 @@
     margin-bottom: 2rem;
 }
 
+.null_similar{
+    color: #7b0000;
+}
+
 
 /*  Media Queries (Medium Devices)  */
 @media screen and (max-width: 1024px){
@@ -14,5 +18,9 @@
         justify-content: center;
         align-items: center;
         margin-top: 2rem;
+    }
+
+    .null_similar{
+        font-size: 1rem;
     }
 }

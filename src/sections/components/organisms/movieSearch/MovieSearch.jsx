@@ -30,7 +30,7 @@ const MovieSearch = ({ onMovieFetched, onLoading, isLoading }) => {
 
     // When the region is changed from the dropdown
     const handleRegionChange = (selectedRegion) => {
-        setWatchRegion(selectedRegion);
+        setWatchRegion(selectedRegion); // Watch region change for this component
     };
 
     // When the submit button is clicked

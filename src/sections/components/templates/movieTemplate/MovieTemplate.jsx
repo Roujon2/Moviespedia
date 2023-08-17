@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useRef, useState} from 'react';
 
 // Importing organisms
 import MovieSearch from '../../organisms/movieSearch/MovieSearch.jsx';
@@ -18,13 +18,16 @@ import SimilarMovies from '../../organisms/similarMovies/SimilarMovies.jsx';
   - Add a similar movies button - DONE
   - Add scrollable container for similar movies - DONE
   - Add similar movies - DONE
-  - Add clickable functionality on the similar movies
+  - Add clickable functionality on the similar movies - DONE
 
 */
 
 const MovieTemplate = () => {
     const [movieData, setMovieData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+
+    // Ref of the section
+    const movieTemplateRef = useRef(null);
 
     // When the movie data is fetched and parsed
     const handleMovieData = (data) => {
@@ -34,6 +37,12 @@ const MovieTemplate = () => {
 
     // When the submit form button is clicked to handle the loading
     const handleLoading = () => {
+        // Scroll to the top of the page
+      setTimeout(() => {
+        // Scroll to the MovieDetails section after a short delay
+        movieTemplateRef.current.scrollIntoView({ behavior: 'smooth' });
+      }); // Adjust the delay time as needed
+
         setIsLoading(true);
 
         // Set the data as null so that movieDetails resets to the default state
@@ -41,15 +50,15 @@ const MovieTemplate = () => {
     };
 
   return (
-    <div className='movie_template_container'>
+    <div className='movie_template_container' ref={movieTemplateRef}>
         {/* Component handling the movie search */}
-        <MovieSearch onMovieFetched={handleMovieData} onLoading={handleLoading} isLoading={isLoading}/>
+        <MovieSearch onMovieFetched={handleMovieData} onLoading={handleLoading} isLoading={isLoading} />
 
         {/* Component handling the display of the movie details */}
         {movieData && <MovieDetails movieData={movieData}/>}
 
         {/* Component handling the display of the similar movies */}
-        {movieData && <SimilarMovies movieData={movieData}/>}
+        {movieData && <SimilarMovies movieData={movieData} onSimilarMovieFetched={handleMovieData} onLoading={handleLoading}/>}
     </div>
   )
 }

@@ -54,6 +54,7 @@ const SimilarMovieSwiper = ({ similarMovies, onCardClick, onImageLoad, posterSty
                         posterPath={movie.poster_path}
                         alt={movie.title}
                         onImageLoad={index === 0 ? onSwiperLoad : undefined}
+                        onCardClick={() => onCardClick(movie.id)} // Function to handle when the card is clicked
                     />
                 </SwiperSlide>
             ))}

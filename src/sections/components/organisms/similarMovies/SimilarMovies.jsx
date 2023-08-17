@@ -7,13 +7,18 @@ import { getSimilarMovies } from '../../../../backend/apiService';
 import SimilarMovieButton from '../../atoms/similarMovieButton/SimilarMovieButton.jsx'
 import SimilarMovieSwiper from '../../molecules/similarMovieSwiper/SimilarMovieSwiper.jsx'
 
+// Importing the axiosRequest functions (api calls)
+import { getMovieDetails } from '../../../../backend/apiService';
+// Importing data parser function
+import { parseMovieData } from '../../../../backend/movieDataParser';
+
 /* 
   TODO:
   - Handle error when the similar movies are not found
-  - Handle when the poster is not found
+  - Handle when the poster is not found - DONE
 */
 
-const SimilarMovies = ({ movieData }) => {
+const SimilarMovies = ({ movieData, onSimilarMovieFetched, onLoading }) => {
   // State variable to hold the list of similar movies
   const [similarMovies, setSimilarMovies] = useState([]);
 
@@ -53,16 +58,22 @@ const SimilarMovies = ({ movieData }) => {
       // Get the first 10 similar movies
       const similarMoviesData = await getSimilarMovies(movieData.id);
 
-      // Looping through the list of simiar movies
-      for(const movie of similarMoviesData){
-        // If the movie doesn't have a poster, remove it from the list
-        if(!movie.poster_path){
-          similarMoviesData.splice(similarMoviesData.indexOf(movie), 1);
+      // Just in case the data is null
+      if(similarMoviesData){
+        // Looping through the list of simiar movies
+        for(const movie of similarMoviesData){
+          // If the movie doesn't have a poster, remove it from the list
+          if(!movie.poster_path){
+            similarMoviesData.splice(similarMoviesData.indexOf(movie), 1);
+          }
         }
-      }
 
-      // Set the similar movies
-      setSimilarMovies(similarMoviesData);
+        // Set the similar movies
+        setSimilarMovies(similarMoviesData); 
+      }else{
+        // Set the similar movies as null
+        setSimilarMovies(null);
+      }
     
     }catch(error){
       console.log(error);
@@ -73,12 +84,33 @@ const SimilarMovies = ({ movieData }) => {
     }
   };
 
+  // When a similar movie card is clicked
+  const handleSimilarMovieClick = async (movieId) => {
+    // Begin loading for the movie template
+    onLoading();
+
+    const movieInfo = await getMovieDetails(movieId);
+
+    // Parsing the data
+    const parsedMovieInfo = parseMovieData(movieInfo, movieData.watchRegion);
+
+    // Setting the data
+    onSimilarMovieFetched(parsedMovieInfo);
+
+  }
+
   return (
     <section>
         <div className="container similar_movies_container" ref={similarMoviesRef}>
           {/* Handles when the get similar button is clicked */}
           {isSimilarButtonClicked ? (
-            <SimilarMovieSwiper similarMovies={similarMovies} onSwiperLoad={handleSwiperLoad}/>
+            <>
+            {similarMovies ? (
+              <SimilarMovieSwiper similarMovies={similarMovies} onSwiperLoad={handleSwiperLoad} onCardClick={handleSimilarMovieClick}/>
+            ) : (
+              <h3 className='null_similar'>Similar movies not found</h3>
+            )}
+          </>
           ) : (
             <SimilarMovieButton onClick={handleGetSimilarClick} isLoading={isLoading}/>
           )}  
