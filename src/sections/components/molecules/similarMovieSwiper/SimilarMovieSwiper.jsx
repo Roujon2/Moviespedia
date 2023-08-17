@@ -15,7 +15,9 @@ import 'swiper/css/navigation'
 import './similarMovieSwiper.css'
 
 // Component handling the display of the similar movies in a swipable list
-const SimilarMovieSwiper = ({ similarMovies, onCardClick, onImageLoad, posterStyle }) => {
+const SimilarMovieSwiper = ({ similarMovies, onCardClick, onImageLoad, posterStyle, onSwiperLoad }) => {
+    
+    // The onSwiperLoad is passed down to the first movie in the list so when it loads, it will scroll to the similar movies section
 
   return (
     <div className='similar_movie_swiper_container'>
@@ -25,7 +27,7 @@ const SimilarMovieSwiper = ({ similarMovies, onCardClick, onImageLoad, posterSty
             modules={[Navigation, Pagination]}
             spaceBetween={50}
             slidesPerView={3}
-            pagination={{ clickable: true }}
+            pagination={{ clickable: true, dynamicBullets: true, dynamicMainBullets: 3 }}
             navigation
 
             breakpoints={
@@ -46,10 +48,12 @@ const SimilarMovieSwiper = ({ similarMovies, onCardClick, onImageLoad, posterSty
             }
         >
             {similarMovies.map((movie, index) => (
+                
                 <SwiperSlide key={index} className='similar_movie'>
                     <MoviePoster
                         posterPath={movie.poster_path}
                         alt={movie.title}
+                        onImageLoad={index === 0 ? onSwiperLoad : undefined}
                     />
                 </SwiperSlide>
             ))}

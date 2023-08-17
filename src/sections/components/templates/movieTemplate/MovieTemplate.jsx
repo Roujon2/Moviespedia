@@ -16,8 +16,9 @@ import SimilarMovies from '../../organisms/similarMovies/SimilarMovies.jsx';
   - Customize the watch providers icons - DONE
   - Change up the region dropdown (add more regions) - DONE
   - Add a similar movies button - DONE
-  - Add scrollable container for similar movies
-  - Add similar movies
+  - Add scrollable container for similar movies - DONE
+  - Add similar movies - DONE
+  - Add clickable functionality on the similar movies
 
 */
 

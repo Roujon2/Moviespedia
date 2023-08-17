@@ -41,7 +41,7 @@ export const getMovieDetails = async (movie_id) => {
 // Gets the similar movies based on the movie id
 export const getSimilarMovies = async (movie_id) => {
     try{
-        const response = await axios.get(`${baseURL}/movie/${movie_id}/similar`,{
+        const response = await axios.get(`${baseURL}/movie/${movie_id}/recommendations`,{
             params: {
                 api_key: api_key,
                 language: 'en-US',

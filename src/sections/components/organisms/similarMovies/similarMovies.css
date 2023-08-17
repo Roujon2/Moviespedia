@@ -3,6 +3,8 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
 }
 
 
@@ -11,5 +13,6 @@
     .similar_movies_container{
         justify-content: center;
         align-items: center;
+        margin-top: 2rem;
     }
 }

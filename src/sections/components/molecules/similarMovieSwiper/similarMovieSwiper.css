@@ -7,9 +7,15 @@
     width: 80%;
 }
 
+.similar_movies_swiper{
+
+    border-radius: 1.5rem;
+    background: linear-gradient(75deg, transparent, #5bc4e873, transparent);
+}
+
 /* Styling the wrapper holding the similar movies */
 .swiper-wrapper{
-    padding: 1rem 0;
+    padding: 0.8rem 0 1.3rem 0.5rem;
 }
 
 
@@ -41,16 +47,24 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
     background-color: var(--color-light);
 }
 
-/* Position the pagination bullets at the bottom */
-.swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
-    position: relative;
-    display: flex;
-    justify-content: center;
-}
 
 /* The swiper container */
 .swiper.swiper-initialized.swiper-horizontal.similar_movies_container{
     padding: 0.5rem;
+}
+
+/* Navigation buttons */
+.similar_movie_swiper_container .swiper-button-next,
+.similar_movie_swiper_container .swiper-button-prev {
+    color: var(--color-bg-secondary);
+
+}
+/* When at the beginning or end of the list */
+.swiper-button-prev.swiper-button-disabled{
+    display: none;
+}
+.swiper-button-next.swiper-button-disabled{
+    display: none;
 }
 
 /*  Media Queries (Medium Devices)  */
@@ -66,6 +80,12 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
     .similar_movie_swiper_container{
         width: 70%;
     }
+
+    /* Style for the title */
+    .similar_movie_swiper_container h3 {
+        font-size: 1rem;
+    }
+
 }
   
 
