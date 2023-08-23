@@ -58,8 +58,6 @@ const SimilarMovies = ({ movieData, onSimilarMovieFetched, onLoading }) => {
       // Get the first 10 similar movies
       const similarMoviesData = await getSimilarMovies(movieData.id);
 
-      console.log(similarMoviesData);
-
       // Just in case the data is null
       if(similarMoviesData && similarMoviesData.length > 0){
         // Looping through the list of simiar movies
