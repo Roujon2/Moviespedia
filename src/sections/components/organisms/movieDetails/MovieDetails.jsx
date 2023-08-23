@@ -10,6 +10,10 @@ import WatchProviders from '../../atoms/watchProviders/WatchProviders.jsx'
 import MovieHeader from '../../molecules/movieHeader/MovieHeader.jsx'
 import MovieCard from '../../molecules/movieCard/MovieCard.jsx'
 
+/*
+  - Add runtime as a movie detail 
+*/
+
 const MovieDetails = ({movieData}) => {
   // Component reference
   const movieDetailsRef = useRef(null);

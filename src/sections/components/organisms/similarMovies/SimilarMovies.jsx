@@ -58,8 +58,10 @@ const SimilarMovies = ({ movieData, onSimilarMovieFetched, onLoading }) => {
       // Get the first 10 similar movies
       const similarMoviesData = await getSimilarMovies(movieData.id);
 
+      console.log(similarMoviesData);
+
       // Just in case the data is null
-      if(similarMoviesData){
+      if(similarMoviesData && similarMoviesData.length > 0){
         // Looping through the list of simiar movies
         for(const movie of similarMoviesData){
           // If the movie doesn't have a poster, remove it from the list
