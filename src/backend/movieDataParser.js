@@ -23,6 +23,8 @@ export const parseMovieData = (movieData, watchRegion) => {
         genres: movieData.genres,
         poster_path: movieData.poster_path,
         overview: movieData.overview,
+        rating: Math.round(movieData.vote_average * 10) / 10, // Rounding to 1 decimal place
+        runtime: `${Math.floor(movieData.runtime / 60)}h ${movieData.runtime % 60}m`, // Convert the runtie from minutes to hours and minutes
     };
 
 

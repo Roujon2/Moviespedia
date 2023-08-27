@@ -1,5 +1,5 @@
 .movie_info_container{
-    margin: 3rem 5rem;
+    margin: 2rem 5rem;
 }
 
 .movie_info{
@@ -28,10 +28,30 @@
     position: relative;
 }
 
-.synopsis_container{
+
+.extra_details_container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
     margin-top: auto;
     margin-bottom: auto;
+}
 
+.runtime_rating_container{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.runtime_rating_container h3{
+    font-size: 1.3rem;
+}
+
+.synopsis_container{
     background-color: #5cb8df60;
     padding: 1rem;
     border-radius: 2rem;
@@ -67,6 +87,10 @@
 /*  Media Queries (Medium Devices) */
 @media screen and (max-width: 1024px){
 
+    .runtime_rating_container h3{
+        font-size: 1.1rem;
+    }
+
     .movie_info_container{
         margin-left: 2rem;
         margin-right: 2rem;
@@ -88,6 +112,14 @@
 
 /*  Media Queries (Small Devices)  */
 @media screen and (max-width: 600px){
+
+    .runtime_rating_container{
+        gap: 1rem;
+    }
+
+    .runtime_rating_container h3{
+        font-size: 0.8rem;
+    }
 
     .movie_info_container{
         margin-left: 1rem;
@@ -119,5 +151,14 @@
 
     .synopsis_container p{
         font-size: 0.8rem
+    }
+
+    .runtime_rating_container{
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .runtime_rating_container h3{
+        font-size: 0.7rem;
     }
 }

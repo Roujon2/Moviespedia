@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import { useState } from 'react';
 import './movieDetails.css'
 import {HiCursorClick} from 'react-icons/hi'
+import {AiFillStar} from 'react-icons/ai'
 
 // Importing atom components
 import WatchProviders from '../../atoms/watchProviders/WatchProviders.jsx'
@@ -12,6 +13,7 @@ import MovieCard from '../../molecules/movieCard/MovieCard.jsx'
 
 /*
   - Add runtime as a movie detail 
+  - Add IMDB rating as a movie detail
 */
 
 const MovieDetails = ({movieData}) => {
@@ -47,6 +49,8 @@ const MovieDetails = ({movieData}) => {
   const posterPath = movieData.poster_path ? "https://image.tmdb.org/t/p/w500" + movieData.poster_path : null;
   const synopsis = movieData.overview;
   const credits = movieData.credits;
+  const runtime = movieData.runtime;
+  const rating = movieData.rating;
 
   return (
     <section>
@@ -74,8 +78,14 @@ const MovieDetails = ({movieData}) => {
             <WatchProviders watchProviders={movieData.watchProviders}/>
           </div>
           
-          <div className="synopsis_container">
-            <p className='synopsis'>{synopsis}</p>
+          <div className='extra_details_container'>
+            <div className="synopsis_container">
+              <p className='synopsis'>{synopsis}</p>
+            </div>
+            <div className="runtime_rating_container">
+              <h3 className='runtime'>Runtime: {runtime}</h3>
+              <h3>{rating}<AiFillStar/></h3>
+            </div>
           </div>
       
         </div>
