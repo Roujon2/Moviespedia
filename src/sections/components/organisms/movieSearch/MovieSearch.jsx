@@ -49,7 +49,7 @@ const MovieSearch = ({ onMovieFetched, onLoading, isLoading }) => {
             movieQueryInputRef.current.blur();
         }
       
-        // Getting data and parsing from backend
+        // Getting data and parsing from the api handler
         try{
             // Doing the search query and getting the first movie
             const searchResults = await searchMovies(movieQuery);
