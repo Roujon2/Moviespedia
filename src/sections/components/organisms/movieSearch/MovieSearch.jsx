@@ -10,9 +10,9 @@ import Header from '../../molecules/header/Header.jsx';
 import SearchForm from '../../molecules/searchForm/SearchForm.jsx';
 
 // Importing the axiosRequest functions (api calls)
-import { searchMovies, getMovieDetails } from '../../../../backend/apiService';
+import { searchMovies, getMovieDetails } from '../../../../serverHandle/apiService';
 // Importing data parser function
-import { parseMovieData } from '../../../../backend/movieDataParser';
+import { parseMovieData } from '../../../../serverHandle/movieDataParser';
 
 
 const MovieSearch = ({ onMovieFetched, onLoading, isLoading }) => {

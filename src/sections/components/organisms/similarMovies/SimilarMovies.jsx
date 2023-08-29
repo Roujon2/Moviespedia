@@ -2,15 +2,15 @@ import React, { useRef, useState } from 'react'
 import './similarMovies.css'
 
 // Api fetch method import
-import { getSimilarMovies } from '../../../../backend/apiService';
+import { getSimilarMovies } from '../../../../serverHandle/apiService';
 
 import SimilarMovieButton from '../../atoms/similarMovieButton/SimilarMovieButton.jsx'
 import SimilarMovieSwiper from '../../molecules/similarMovieSwiper/SimilarMovieSwiper.jsx'
 
 // Importing the axiosRequest functions (api calls)
-import { getMovieDetails } from '../../../../backend/apiService';
+import { getMovieDetails } from '../../../../serverHandle/apiService';
 // Importing data parser function
-import { parseMovieData } from '../../../../backend/movieDataParser';
+import { parseMovieData } from '../../../../serverHandle/movieDataParser';
 
 /* 
   TODO:
