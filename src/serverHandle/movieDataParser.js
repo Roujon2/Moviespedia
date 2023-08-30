@@ -65,3 +65,18 @@ export const parseMovieData = (movieData, watchRegion) => {
     return parsedMovieData;
 
 };
+
+export const movieListCleanup = (movieList) => {
+    // Movie list to be returned
+    const cleanMovieList = [];
+
+    // Looping through the movie list
+    for(const movie of movieList){
+        // Conditions to be in the movie list
+        if(movie.poster_path && movie.vote_count > 150){
+            cleanMovieList.push(movie);
+        }
+    }
+
+    return cleanMovieList;
+};

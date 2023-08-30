@@ -17,9 +17,9 @@ const SearchResults = ({ searchResults, onMovieFetched }) => {
     <div className='search_results_list_container'>
         <h2>Search Results</h2>
         <div className="search_results_list">
-            {searchResults.map((movie) => {
+            {searchResults.map((movie, index) => {
               return(
-                <div className="result">
+                <div className="search_result" key={index}>
                     <MoviePoster
                     posterPath={movie.poster_path}
                     alt={movie.title}

@@ -9,7 +9,7 @@ import SearchResults from '../../organisms/searchResults/SearchResults.jsx';
 // Importing the axiosRequest functions (api calls)
 import { getMovieDetails, searchMovies } from '../../../../serverHandle/apiService';
 // Importing data parser function
-import { parseMovieData } from '../../../../serverHandle/movieDataParser';
+import { parseMovieData, movieListCleanup } from '../../../../serverHandle/movieDataParser';
 
 /* TODO:
   - Port all the css and jsx in MovieSearch to this - DONE
@@ -49,16 +49,20 @@ const MovieTemplate = () => {
 
       console.log(searchResults);
 
-      if(searchResults.length === 0){
+      // If the search results are not empty
+      if(searchResults.length > 0){
+        // Cleaning up the list of movies
+        const cleanMovieList = movieListCleanup(searchResults);
+        // Setting the data
+        setMovieSearchResults(cleanMovieList);
+        setIsLoading(false);
+        
+      }else{
         // If the search results are empty, display the null movie in the movie details
         const movie = {
           state: false
         }
         handleMovieData(movie);
-      }else{
-        // Setting the data
-        setMovieSearchResults(searchResults);
-        setIsLoading(false);
       }
     };
 

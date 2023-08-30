@@ -4,6 +4,9 @@ import './similarMovies.css'
 // Api fetch method import
 import { getSimilarMovies } from '../../../../serverHandle/apiService';
 
+// List cleanup method import
+import { movieListCleanup } from '../../../../serverHandle/movieDataParser';
+
 import SimilarMovieButton from '../../atoms/similarMovieButton/SimilarMovieButton.jsx'
 import SimilarMovieSwiper from '../../molecules/similarMovieSwiper/SimilarMovieSwiper.jsx'
 
@@ -49,16 +52,11 @@ const SimilarMovies = ({ movieData, onMovieFetched, onLoading }) => {
 
       // Just in case the data is null
       if(similarMoviesData && similarMoviesData.length > 0){
-        // Looping through the list of simiar movies
-        for(const movie of similarMoviesData){
-          // If the movie doesn't have a poster, remove it from the list
-          if(!movie.poster_path){
-            similarMoviesData.splice(similarMoviesData.indexOf(movie), 1);
-          }
-        }
+        // Cleaning up the list of similar movies
+        const cleanSimilarMoviesData = movieListCleanup(similarMoviesData);
 
         // Set the similar movies
-        setSimilarMovies(similarMoviesData); 
+        setSimilarMovies(cleanSimilarMoviesData); 
       }else{
         // Set the similar movies as null
         setSimilarMovies(null);

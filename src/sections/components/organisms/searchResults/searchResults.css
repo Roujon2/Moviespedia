@@ -1,0 +1,60 @@
+/* Styling for the movie search results */
+.search_results_list_container {
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+/* List of search results */
+.search_results_list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Start stacking posters from the left */
+    gap: 2.5rem; /* Adjust the gap between posters */
+}
+
+.search_result{
+    text-align: center;
+    max-width: 15%;
+}
+
+.result_title{
+    font-size: 1rem;
+}
+
+/*  Media Queries (Medium Devices)  */
+@media screen and (max-width: 1024px){
+    .search_results_list{
+        gap: 1.5rem;
+    }
+    .search_result{
+        max-width: 30%;
+    }
+
+    .result_title{
+        font-size: clamp(0.6rem, 1.5vw, 1.5rem);
+    }
+}
+
+
+/*  Media Queries (Small Devices)  */
+@media screen and (max-width: 600px){
+    .search_results_list{
+        gap: 1rem;
+    }
+    .search_result{
+        max-width: 45%;
+    }
+    .result_title{
+        font-size: clamp(0.8rem, 1.5vw, 1.5rem);
+    }
+}
+
+/*  Media Queries (Very Small Devices)  */
+@media screen and (max-width: 390px){
+    .search_result{
+        max-width: 45%;
+    }
+    .result_title{
+        font-size: clamp(0.5rem, 1.5vw, 1.5rem);
+    }
+}
