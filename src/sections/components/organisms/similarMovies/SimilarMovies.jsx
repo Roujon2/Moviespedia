@@ -7,18 +7,7 @@ import { getSimilarMovies } from '../../../../serverHandle/apiService';
 import SimilarMovieButton from '../../atoms/similarMovieButton/SimilarMovieButton.jsx'
 import SimilarMovieSwiper from '../../molecules/similarMovieSwiper/SimilarMovieSwiper.jsx'
 
-// Importing the axiosRequest functions (api calls)
-import { getMovieDetails } from '../../../../serverHandle/apiService';
-// Importing data parser function
-import { parseMovieData } from '../../../../serverHandle/movieDataParser';
-
-/* 
-  TODO:
-  - Handle error when the similar movies are not found - DONE
-  - Handle when the poster is not found - DONE
-*/
-
-const SimilarMovies = ({ movieData, onSimilarMovieFetched, onLoading }) => {
+const SimilarMovies = ({ movieData, onMovieFetched, onLoading }) => {
   // State variable to hold the list of similar movies
   const [similarMovies, setSimilarMovies] = useState([]);
 
@@ -86,17 +75,8 @@ const SimilarMovies = ({ movieData, onSimilarMovieFetched, onLoading }) => {
 
   // When a similar movie card is clicked
   const handleSimilarMovieClick = async (movieId) => {
-    // Begin loading for the movie template
-    onLoading();
-
-    const movieInfo = await getMovieDetails(movieId);
-
-    // Parsing the data
-    const parsedMovieInfo = parseMovieData(movieInfo, movieData.watchRegion);
-
-    // Setting the data
-    onSimilarMovieFetched(parsedMovieInfo);
-
+    // Callback to the movie template function to fetch the movie data and display
+    onMovieFetched(movieId);
   }
 
   return (

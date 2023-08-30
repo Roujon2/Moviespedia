@@ -9,15 +9,10 @@ import Loading from '../../atoms/loading/Loading.jsx';
 import Header from '../../molecules/header/Header.jsx';
 import SearchForm from '../../molecules/searchForm/SearchForm.jsx';
 
-// Importing the axiosRequest functions (api calls)
-import { searchMovies, getMovieDetails } from '../../../../serverHandle/apiService';
-// Importing data parser function
-import { parseMovieData } from '../../../../serverHandle/movieDataParser';
-
-
-const MovieSearch = ({ onMovieFetched, onLoading, isLoading }) => {
+const MovieSearch = ({ onSearchResultsFetched, onLoading, isLoading, watchRegionChange, watchRegion }) => {
     // Tracking the input of the user
     const [movieQuery, setMovieQuery] = useState('');
+    
     // Updating the movieQuery state variable when the user types
     const handleInputChange = (event) => {
         setMovieQuery(event.target.value.toString());
@@ -25,12 +20,9 @@ const MovieSearch = ({ onMovieFetched, onLoading, isLoading }) => {
     // Reference of the movie search input text field
     const movieQueryInputRef = useRef(null);
 
-    // Selected watch region state variable
-    const [watchRegion, setWatchRegion] = useState('AR'); // Default region
-
     // When the region is changed from the dropdown
     const handleRegionChange = (selectedRegion) => {
-        setWatchRegion(selectedRegion); // Watch region change for this component
+        watchRegionChange(selectedRegion); // Watch region change for the data in the movie template
     };
 
     // When the submit button is clicked
@@ -41,51 +33,14 @@ const MovieSearch = ({ onMovieFetched, onLoading, isLoading }) => {
         // Setting the loading animation
         onLoading();
 
+        onSearchResultsFetched(movieQuery);
+
         // Reset the text input field
         setMovieQuery('');
 
         // Removing the focus from the input field
         if (movieQueryInputRef.current) {
             movieQueryInputRef.current.blur();
-        }
-      
-        // Getting data and parsing from the api handler
-        try{
-            // Doing the search query and getting the first movie
-            const searchResults = await searchMovies(movieQuery);
-            const firstMovie = searchResults[0];
-
-            // If the first movie exists, get the details
-            if(firstMovie){
-                const movieId = firstMovie.id;
-                const movieInfo = await getMovieDetails(movieId);
-
-                // Parsing the data
-                const parsedMovieInfo = parseMovieData(movieInfo, watchRegion);
-
-                // Setting the data
-                onMovieFetched(parsedMovieInfo);
-
-            }else{ // Movie data is undefined (no movie with that search found)
-                // Setting the data as invalid
-                const movieInfo = {
-                    state: false
-                };
-
-                // Setting the data
-                onMovieFetched(movieInfo);
-            }
-
-        }catch(error){
-            console.error(error);
-            
-            // Setting the data as invalid
-            const movieInfo = {
-                state: false
-            };
-
-            // Setting the data
-            onMovieFetched(movieInfo);
         }
 
     }
@@ -109,6 +64,8 @@ const MovieSearch = ({ onMovieFetched, onLoading, isLoading }) => {
 
                 {/* Loading component */}
                 {isLoading && <Loading/>}
+
+
                 
             </div>
         </section>
