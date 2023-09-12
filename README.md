@@ -4,7 +4,7 @@ for particular regions.
 
 Using TMDB and JustWatch API.
 
-Hosted at https://moviespedia-64e3a.web.app with to Google Firebase
+Hosted at https://moviespedia-64e3a.web.app with Google Firebase
 
 ## Project
 ### Javascript
